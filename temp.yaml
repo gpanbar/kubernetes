@@ -1,0 +1,84 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/bound-by-controller: "yes"
+  creationTimestamp: "2021-04-12T16:16:09Z"
+  finalizers:
+  - kubernetes.io/pv-protection
+  labels:
+    size: small
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:accessModes: {}
+        f:capacity:
+          .: {}
+          f:storage: {}
+        f:nfs:
+          .: {}
+          f:path: {}
+          f:server: {}
+        f:persistentVolumeReclaimPolicy: {}
+        f:volumeMode: {}
+    manager: kubectl-create
+    operation: Update
+    time: "2021-04-12T16:16:09Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:size: {}
+      f:spec:
+        f:storageClassName: {}
+    manager: kubectl-edit
+    operation: Update
+    time: "2021-04-12T17:03:09Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:pv.kubernetes.io/bound-by-controller: {}
+      f:spec:
+        f:claimRef:
+          .: {}
+          f:apiVersion: {}
+          f:kind: {}
+          f:name: {}
+          f:namespace: {}
+          f:resourceVersion: {}
+          f:uid: {}
+      f:status:
+        f:phase: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-04-12T17:03:14Z"
+  name: masternas-nfs
+  resourceVersion: "69881"
+  uid: a3ef8e54-00e0-44ae-ab58-1031b5af2a5f
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 100Mi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: claim-on-nas
+    namespace: default
+    resourceVersion: "69790"
+    uid: a92c799e-949d-4642-a3d4-e9d5cf439edb
+  nfs:
+    path: /nfs/macNFS
+    server: 192.168.1.13
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: slow
+  volumeMode: Filesystem
+status:
+  phase: Released
