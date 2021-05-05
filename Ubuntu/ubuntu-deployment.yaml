@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-vm
+  labels:
+    app: ubuntu-deployment
+    type: linux-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ubuntu-vm
+      type: linux-vm
+  template:
+    metadata:
+      name: ubuntu-vm
+      labels:
+        app: ubuntu-vm
+        type: linux-vm
+    spec:
+      containers:
+        - name: ubuntu-vm
+          image: ubuntu
+          command:
+            - "sleep"
+            - "604880"
+            - "apt-get update -y"
+            - "apt-get upgrade -y"
+            - "apt-get install openssh-server"
+            
