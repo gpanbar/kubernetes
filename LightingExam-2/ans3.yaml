@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: my-busybox
+  name: my-busybox
+  namespace: dev2406
+spec:
+  containers:
+  - command:
+    - /bin/sh
+    - -c
+    - sleep 3600
+    image: busybox
+    name: secret
+    volumeMounts:
+    - mountPath: /etc/secret-volume
+      name: secret-volume
+      readOnly: true
+  nodeSelector: 
+    kubernetes.io/hostname: controlplane
+  tolerations:
+  - key: node-role.kubernetes.io/master
+    operator: "Exists"
+    effect: "NoSchedule"
+  volumes:
+  - name: secret-volume
+    secret:
+      secretName: dotfile-secret

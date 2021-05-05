@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-on-nas
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 100Mi
+  storageClassName: slow
+  selector:
+    matchLabels:
+      size: small
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: claim-on-nas-01
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 1Mi
